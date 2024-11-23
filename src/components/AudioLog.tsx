@@ -1,15 +1,15 @@
-import { useFirestoreData } from "../hooks/useFirestoreData";
+import { useRealtimeData } from "../hooks/useFirestoreData";
 import { motion } from "framer-motion";
 
 const AudioLog = () => {
-    const audioData = useFirestoreData("audio");
+    const audioData = useRealtimeData("audio");
 
     return (
         <div className="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">Audio Logs</h2>
             <ul>
                 {audioData.length > 0 ? (
-                    audioData.map((audio) => (
+                    audioData.map((audio: any) => (
                         <motion.li
                             key={audio.id}
                             initial={{ opacity: 0, x: -50 }}

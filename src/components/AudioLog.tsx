@@ -4,19 +4,19 @@ import { motion } from "framer-motion";
 const AudioLog = () => {
     const audioData = useRealtimeData("data/audio");
     console.log("Audio Data:", audioData);
-    const formatTimestamp = (timestamp: any) => {
-        if (!timestamp) return "N/A";
-        const date = new Date(timestamp);
-        return date.toLocaleString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-            second: "numeric",
-            hour12: true,
-        });
-    };
+    // const formatTimestamp = (timestamp: any) => {
+    //     if (!timestamp) return "N/A";
+    //     const date = new Date(timestamp);
+    //     return date.toLocaleString("en-US", {
+    //         year: "numeric",
+    //         month: "long",
+    //         day: "numeric",
+    //         hour: "numeric",
+    //         minute: "numeric",
+    //         second: "numeric",
+    //         hour12: true,
+    //     });
+    // };
     if (!audioData) {
         return (
             <div className="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow duration-300">

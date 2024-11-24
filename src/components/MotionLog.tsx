@@ -1,9 +1,9 @@
+import { FaWalking } from "react-icons/fa";
 import { useRealtimeData } from "../hooks/useFirestoreData";
 
 const MotionLog = () => {
     const motionData = useRealtimeData("data/distance");
 
-    // Helper function to format the timestamp
     const formatTimestamp = (timestamp: any) => {
         if (!timestamp) return "N/A";
         const date = new Date(timestamp);
@@ -19,30 +19,33 @@ const MotionLog = () => {
     };
 
     return (
-        <div className="bg-white shadow-lg rounded-lg p-8 hover:shadow-xl transition-shadow duration-300">
-            <h2 className="text-3xl font-semibold mb-6 text-gray-700 border-b pb-4">
-                Motion Logs
-            </h2>
-            {motionData ? (
-                <ul>
-                    <li className="py-3">
-                        <p className="text-gray-600 text-lg">
-                            <span className="font-medium">Timestamp:</span> {formatTimestamp(motionData.timestamp)}
+        <div className="flex flex-col justify-between bg-gradient-to-r from-white to-gray-50 shadow-lg rounded-lg p-6 min-h-[200px]">
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-semibold text-gray-700 flex items-center gap-2">
+                    <FaWalking className="text-blue-500" /> Motion Logs
+                </h2>
+                <span className="text-sm text-gray-500">{motionData ? formatTimestamp(motionData.timestamp) : "N/A"}</span>
+            </div>
+            <div className="text-gray-600">
+                {motionData ? (
+                    <>
+                        <p>
+                            <strong>Motion Detected:</strong> {motionData.detected ? "Yes" : "No"}
                         </p>
-                        <p className="text-gray-600 text-lg">
-                            <span className="font-medium">Detected:</span>{" "}
-                            {motionData.detected ? "Yes" : "No"}
+                        <p>
+                            <strong>Temperature:</strong> {motionData.temp || "N/A"}°C
                         </p>
-                        <p className="text-gray-600 text-lg">
-                            <span className="font-medium">Distance:</span> {motionData.distance || "N/A"}
+                        <p>
+                            <strong>Distance:</strong> {motionData.distance || "N/A"} cm
                         </p>
-                    </li>
-                </ul>
-            ) : (
-                <p className="text-gray-500">No motion data available.</p>
-            )}
+                    </>
+                ) : (
+                    <p>No motion data available.</p>
+                )}
+            </div>
         </div>
     );
 };
+
 
 export default MotionLog;

@@ -7,6 +7,7 @@ const MotionLog = () => {
     const formatTimestamp = (timestamp: any) => {
         if (!timestamp) return "N/A";
         const date = new Date(timestamp);
+        date.setMinutes(date.getMinutes() + 330);
         return date.toLocaleString("en-US", {
             year: "numeric",
             month: "long",
@@ -17,6 +18,7 @@ const MotionLog = () => {
             hour12: true,
         });
     };
+
 
     return (
         <div className="flex flex-col justify-between bg-gradient-to-r from-white to-gray-50 shadow-lg rounded-lg p-6 min-h-[200px]">
